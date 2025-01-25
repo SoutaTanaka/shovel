@@ -6,27 +6,35 @@ import '../interface/ground.dart';
 import '../interface/shovel.dart';
 
 typedef Dig<T> = T Function(Shovel shovel);
+typedef DigWithArg<T, A> = T Function(Shovel shovel, dynamic arg);
 
 class GroundImpl implements Ground {
   GroundImpl();
 
-  final Map<Type, Dig> _buried = HashMap();
+  final Map<Type, Dig> _container = HashMap();
+  final Map<Type, DigWithArg> _containerWithArg = HashMap();
 
   @override
-  void bury<T>(T Function(Shovel shovel) callback) {
-    assert(!_buried.containsKey(T));
-    _buried[T] = callback;
+  void bury<T>(Dig<T> callback) {
+    assert(!_container.containsKey(T));
+    _container[T] = callback;
+  }
+
+  @override
+  void buryWithArg<T, A>(DigWithArg<T, A> callback) {
+    assert(!_containerWithArg.containsKey(T));
+    _containerWithArg[T] = callback;
   }
 
   @override
   void reclaim(Ground ground) {
     ground as GroundImpl;
-    assert(_buried.keys.every((key) => !ground._buried.containsKey(key)));
-    _buried.addAll(ground._buried);
+    assert(_container.keys.every((key) => !ground._container.containsKey(key)));
+    _container.addAll(ground._container);
   }
 
   @override
   Shovel shovel() {
-    return ShovelImpl(_buried);
+    return ShovelImpl(_container, _containerWithArg);
   }
 }

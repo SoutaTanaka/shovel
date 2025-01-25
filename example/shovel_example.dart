@@ -1,17 +1,17 @@
 import 'package:shovel/shovel.dart';
 
 void main() {
-  final Ground ground1 = Ground()..bury<A>((_) => A());
+  final Ground ground1 = Ground()..buryWithArg<A, String>((shovel, arg) => A(name: arg));
 
   final Ground ground2 = Ground()
-    ..bury<B>((shovel) => B(shovel.dig<A>()))
+    ..bury<B>((shovel) => B(shovel.digWithArg<A, String>('hoge')))
     ..bury<C>((shovel) => C(shovel.dig<A>(), shovel.dig<B>()))
     ..reclaim(ground1);
 
   final shovel = ground2.shovel();
 
   print('---A---');
-  final a = shovel.dig<A>();
+  final a = shovel.digWithArg<A, String>('hoge');
   a.hello();
 
   print('---B---');
@@ -24,6 +24,8 @@ void main() {
 }
 
 class A {
+  A({required this.name});
+  final String name;
   void hello({String? from}) {
     print('Hello A ${from != null ? 'from $from' : ''}');
   }
@@ -49,4 +51,32 @@ class C {
     a.hello(from: 'C');
     b.hello(from: 'C');
   }
+}
+
+class D {
+  D(this.e);
+  final E e;
+
+  void hello() {
+    print('Hello D');
+  }
+}
+
+class E {
+  E(this.d);
+  final D d;
+}
+
+class F {
+  F(this.g);
+  final G g;
+
+  void hello() {
+    print('Hello F');
+  }
+}
+
+class G {
+  G(this.d);
+  final D d;
 }

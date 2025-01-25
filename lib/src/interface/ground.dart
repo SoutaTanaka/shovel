@@ -6,8 +6,9 @@ abstract interface class Ground {
 
   void bury<T>(T Function(Shovel shovel) callback);
 
+  void buryWithArg<T, A>(DigWithArg<T, A> callback);
+
   void reclaim(Ground ground);
-// void buryMulti<T, A1>(List<T> Function(Shovel shovel, A1 arg1) callback);
 
   Shovel shovel();
 }
