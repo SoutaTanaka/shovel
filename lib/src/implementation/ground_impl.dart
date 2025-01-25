@@ -26,7 +26,7 @@ class GroundImpl implements Ground {
   }
 
   @override
-  Shovel excavate() {
+  Shovel shovel() {
     return ShovelImpl(_buried);
   }
 }

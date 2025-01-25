@@ -8,7 +8,7 @@ void main() {
     ..bury<C>((shovel) => C(shovel.dig<A>(), shovel.dig<B>()))
     ..reclaim(ground1);
 
-  final shovel = ground2.excavate();
+  final shovel = ground2.shovel();
 
   print('---A---');
   final a = shovel.dig<A>();

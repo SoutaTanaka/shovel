@@ -9,5 +9,5 @@ abstract interface class Ground {
   void reclaim(Ground ground);
 // void buryMulti<T, A1>(List<T> Function(Shovel shovel, A1 arg1) callback);
 
-  Shovel excavate();
+  Shovel shovel();
 }
