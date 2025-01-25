@@ -2,7 +2,7 @@ import 'package:shovel/src/interface/shovel.dart';
 import 'package:shovel/src/implementation/ground_impl.dart';
 
 abstract interface class Ground {
-  const factory Ground() = GroundImpl;
+  factory Ground() = GroundImpl;
 
   void bury<T>(T Function(Shovel shovel) callback);
 

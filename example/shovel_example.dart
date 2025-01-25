@@ -10,15 +10,43 @@ void main() {
 
   final shovel = ground2.excavate();
 
+  print('---A---');
   final a = shovel.dig<A>();
+  a.hello();
+
+  print('---B---');
+  final b = shovel.dig<B>();
+  b.hello();
+
+  print('---C---');
+  final c = shovel.dig<C>();
+  c.hello();
 }
 
-class A {}
+class A {
+  void hello({String? from}) {
+    print('Hello A ${from != null ? 'from $from' : ''}');
+  }
+}
 
 class B {
-  B(A a) {}
+  B(this.a);
+  final A a;
+
+  void hello({String? from}) {
+    print('Hello B ${from != null ? 'from $from' : ''}');
+    a.hello(from: from ?? 'B');
+  }
 }
 
 class C {
-  C(A a, B b) {}
+  C(this.a, this.b);
+  final A a;
+  final B b;
+
+  void hello() {
+    print('Hello C');
+    a.hello(from: 'C');
+    b.hello(from: 'C');
+  }
 }
