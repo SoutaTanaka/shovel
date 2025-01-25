@@ -3,6 +3,7 @@
 /// More dartdocs go here.
 library;
 
-export 'src/shovel_base.dart';
+export 'src/interface/ground.dart';
+export 'src/interface/shovel.dart';
 
 // TODO: Export any libraries intended for clients of this package.
