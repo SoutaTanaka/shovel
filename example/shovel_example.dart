@@ -4,18 +4,18 @@ void main() {
   final Ground ground1 = Ground()..buryWithArg<A, String>((shovel, arg) => A(name: arg));
 
   final Ground ground2 = Ground()
-    ..bury<B>((shovel) => B(shovel.digWithArg<A, String>('hoge')))
-    ..bury<C>((shovel) => C(shovel.dig<A>(), shovel.dig<B>()))
+    ..buryWithArg<B, A>((shovel, arg) => B(shovel.digWithArg<A, String>(arg)))
+    ..bury<C>((shovel) => C(shovel.digWithArg<A, String>('CCC'), shovel.digWithArg<B, String>('CCCC')))
     ..reclaim(ground1);
 
   final shovel = ground2.shovel();
 
   print('---A---');
-  final a = shovel.digWithArg<A, String>('hoge');
+  final a = shovel.digWithArg<A, String>('AAA');
   a.hello();
 
   print('---B---');
-  final b = shovel.dig<B>();
+  final b = shovel.digWithArg<B, String>('BBB');
   b.hello();
 
   print('---C---');
@@ -27,7 +27,7 @@ class A {
   A({required this.name});
   final String name;
   void hello({String? from}) {
-    print('Hello A ${from != null ? 'from $from' : ''}');
+    print('Hello A ${from != null ? 'from $from' : ''} $name');
   }
 }
 
