@@ -11,29 +11,61 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/to/develop-packages). 
 -->
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+# Shovel
+
+A lightweight dependency injection framework for Dart applications that provides an intuitive way to manage dependencies.
+
+[日本語のREADMEはこちら](README.ja.md)
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+- Simple and intuitive API for dependency registration and resolution
+- Support for parameterized dependency injection
+- Ability to merge multiple dependency containers
+- Type-safe dependency resolution
+- Flexible dependency configuration
 
-## Getting started
+## Getting Started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+Add `shovel` to your `pubspec.yaml`:
+
+```yaml
+dependencies:
+  shovel: ^1.0.0
+```
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
+Here's a basic example of how to use Shovel:
 
 ```dart
-const like = 'sample';
+// Define your classes
+class UserService {
+  final String apiKey;
+  UserService({required this.apiKey});
+}
+
+class UserRepository {
+  final UserService userService;
+  UserRepository(this.userService);
+}
+
+// Set up dependency injection
+final ground = Ground()
+  ..buryWithArg<UserService, String>((shovel, apiKey) => UserService(apiKey: apiKey))
+  ..bury<UserRepository>((shovel) => UserRepository(
+        shovel.digWithArg<UserService, String>('your-api-key'),
+      ));
+
+// Get instances
+final shovel = ground.shovel();
+final repository = shovel.dig<UserRepository>();
 ```
 
-## Additional information
+For more complex examples, check the `/example` folder.
 
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+## Additional Information
+
+- Package is compatible with Dart SDK 3.6.0 or higher
+- For bug reports and feature requests, please visit the issue tracker
+- Contributions are welcome!
