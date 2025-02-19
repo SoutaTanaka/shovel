@@ -31,6 +31,8 @@ class GroundImpl implements Ground {
     ground as GroundImpl;
     assert(_container.keys.every((key) => !ground._container.containsKey(key)));
     _container.addAll(ground._container);
+    assert(_containerWithArg.keys.every((key) => !ground._containerWithArg.containsKey(key)));
+    _containerWithArg.addAll(ground._containerWithArg);
   }
 
   @override
