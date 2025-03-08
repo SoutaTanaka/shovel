@@ -1,6 +1,6 @@
 name: shovel
 description: A lightweight dependency injection framework for Dart applications that provides an intuitive way to manage dependencies.
-version: 1.0.0
+version: 1.0.0+1
 repository: https://github.com/SoutaTanaka/shovel
 homepage: https://x.com/_sotaatos
 
