@@ -4,26 +4,31 @@
 import 'package:shovel/shovel.dart';
 
 void main() {
-  final ground1 = Ground()..buryWithArg<A, String>((shovel, arg) => A(name: arg));
+  final ground1 = Ground()
+    ..buryWithArg<A, String>((shovel, arg) => A(name: arg));
 
   final ground2 = Ground()
-    ..buryWithArg<B, String>((shovel, arg) => B(shovel.digWithArg<A, String>(arg)))
-    ..bury<C>((shovel) => C(shovel.digWithArg<A, String>('CCC'), shovel.digWithArg<B, String>('CCCC')))
+    ..buryWithArg<B, String>(
+      (shovel, arg) => B(shovel.digWithArg<A, String>(arg)),
+    )
+    ..bury<C>(
+      (shovel) => C(
+        shovel.digWithArg<A, String>('CCC'),
+        shovel.digWithArg<B, String>('CCCC'),
+      ),
+    )
     ..reclaim(ground1);
 
   final shovel = ground2.shovel();
 
   print('---A---');
-  shovel.digWithArg<A, String>('AAA')
-  .hello();
+  shovel.digWithArg<A, String>('AAA').hello();
 
   print('---B---');
-  shovel.digWithArg<B, String>('BBB')
-  .hello();
+  shovel.digWithArg<B, String>('BBB').hello();
 
   print('---C---');
-  shovel.dig<C>()
-  .hello();
+  shovel.dig<C>().hello();
 }
 
 class A {

@@ -41,7 +41,9 @@ abstract interface class Ground {
   ///   UserService(apiKey: apiKey),
   /// );
   /// ```
-  void buryWithArg<T extends Object, A extends Object>(DigWithArg<T, A> callback);
+  void buryWithArg<T extends Object, A extends Object>(
+    DigWithArg<T, A> callback,
+  );
 
   /// Merges the registrations from another [Ground] instance into this one.
   ///
