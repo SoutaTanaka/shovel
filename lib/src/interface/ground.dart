@@ -28,7 +28,7 @@ abstract interface class Ground {
   ///   shovel.dig<UserService>(),
   /// ));
   /// ```
-  void bury<T>(Dig<T> callback);
+  void bury<T extends Object>(Dig<T> callback);
 
   /// Registers a dependency of type [T] that requires an argument of type [A].
   ///
@@ -41,7 +41,7 @@ abstract interface class Ground {
   ///   UserService(apiKey: apiKey),
   /// );
   /// ```
-  void buryWithArg<T, A>(DigWithArg<T, A> callback);
+  void buryWithArg<T extends Object, A extends Object>(DigWithArg<T, A> callback);
 
   /// Merges the registrations from another [Ground] instance into this one.
   ///

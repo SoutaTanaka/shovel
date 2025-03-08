@@ -23,7 +23,7 @@ abstract interface class Shovel {
   /// ```
   ///
   /// Throws an error if the type [T] has not been registered.
-  T dig<T>();
+  T dig<T extends Object>();
 
   /// Resolves and returns an instance of type [T] with an argument of type [A].
   ///
@@ -37,5 +37,5 @@ abstract interface class Shovel {
   /// ```
   ///
   /// Throws an error if the type [T] has not been registered with argument type [A].
-  T digWithArg<T, A>(A arg);
+  T digWithArg<T extends Object, A extends Object>(A arg);
 }

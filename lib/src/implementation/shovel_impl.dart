@@ -12,7 +12,7 @@ class ShovelImpl implements Shovel {
   final Set<Type> _visited = {};
 
   @override
-  T dig<T>() {
+  T dig<T extends Object>() {
     if (_visited.contains(T)) {
       throw StateError('Circular dependency detected for type $T');
     }
@@ -23,11 +23,11 @@ class ShovelImpl implements Shovel {
     }
     final instance = result.call(this);
     _visited.remove(T);
-    return instance;
+    return instance as T;
   }
 
   @override
-  T digWithArg<T, A>(A arg) {
+  T digWithArg<T extends Object, A extends Object>(A arg) {
     if (_visited.contains(T)) {
       throw StateError('Circular dependency detected for type $T');
     }
@@ -38,6 +38,6 @@ class ShovelImpl implements Shovel {
     }
     final instance = result.call(this, arg);
     _visited.remove(T);
-    return instance;
+    return instance as T;
   }
 }

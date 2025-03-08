@@ -6,10 +6,10 @@ import 'package:shovel/src/interface/ground.dart';
 import 'package:shovel/src/interface/shovel.dart';
 
 /// A dependency injection container that manages object creation and dependencies.
-typedef Dig<T> = T Function(Shovel shovel);
+typedef Dig<T extends Object> = T Function(Shovel shovel);
 
 /// A dependency injection container that manages object creation and dependencies.
-typedef DigWithArg<T, A> = T Function(Shovel shovel, dynamic arg);
+typedef DigWithArg<T extends Object, A extends Object> = T Function(Shovel shovel, A arg);
 
 /// An implementation of [Ground] that manages dependency registrations.
 class GroundImpl implements Ground {
@@ -20,15 +20,17 @@ class GroundImpl implements Ground {
   final Map<Type, DigWithArg> _containerWithArg = HashMap();
 
   @override
-  void bury<T>(Dig<T> callback) {
+  void bury<T extends Object>(Dig<T> callback) {
     assert(!_container.containsKey(T), 'Type $T is already registered');
     _container[T] = callback;
   }
 
   @override
-  void buryWithArg<T, A>(DigWithArg<T, A> callback) {
+  void buryWithArg<T extends Object, A extends Object>(DigWithArg<T, A> callback) {
     assert(!_containerWithArg.containsKey(T), 'Type $T is already registered');
-    _containerWithArg[T] = callback;
+    _containerWithArg[T] = (Shovel shovel, Object arg){
+      return callback(shovel, arg as A);
+    };
   }
 
   @override
