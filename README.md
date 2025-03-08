@@ -13,7 +13,7 @@ and the Flutter guide for
 
 # Shovel
 
-A lightweight dependency injection framework for Dart applications that provides an intuitive way to manage dependencies.
+A lightweight dependency injection framework for Dart applications that provides an intuitive way to manage dependencies. Shovel is inspired by [Kodein](https://github.com/kosi-libs/Kodein), a dependency injection library for Kotlin.
 
 [日本語のREADMEはこちら](README.ja.md)
 

@@ -1,6 +1,6 @@
 # Shovel
 
-Dartアプリケーションのための軽量な依存性注入フレームワークです。直感的な依存関係の管理を提供します。
+Dartアプリケーションのための軽量な依存性注入フレームワークです。直感的な依存関係の管理を提供します。Shovelは、Kotlin向けの依存性注入ライブラリである[Kodein](https://github.com/kosi-libs/Kodein)にインスパイアされています。
 
 [English README is here](README.md)
 
