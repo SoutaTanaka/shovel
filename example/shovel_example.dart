@@ -1,9 +1,12 @@
+// Example of how to use Shovel
+// ignore_for_file: avoid_print
+
 import 'package:shovel/shovel.dart';
 
 void main() {
-  final Ground ground1 = Ground()..buryWithArg<A, String>((shovel, arg) => A(name: arg));
+  final ground1 = Ground()..buryWithArg<A, String>((shovel, arg) => A(name: arg));
 
-  final Ground ground2 = Ground()
+  final ground2 = Ground()
     ..buryWithArg<B, A>((shovel, arg) => B(shovel.digWithArg<A, String>(arg)))
     ..bury<C>((shovel) => C(shovel.digWithArg<A, String>('CCC'), shovel.digWithArg<B, String>('CCCC')))
     ..reclaim(ground1);
@@ -11,16 +14,16 @@ void main() {
   final shovel = ground2.shovel();
 
   print('---A---');
-  final a = shovel.digWithArg<A, String>('AAA');
-  a.hello();
+  shovel.digWithArg<A, String>('AAA')
+  .hello();
 
   print('---B---');
-  final b = shovel.digWithArg<B, String>('BBB');
-  b.hello();
+  shovel.digWithArg<B, String>('BBB')
+  .hello();
 
   print('---C---');
-  final c = shovel.dig<C>();
-  c.hello();
+  shovel.dig<C>()
+  .hello();
 }
 
 class A {

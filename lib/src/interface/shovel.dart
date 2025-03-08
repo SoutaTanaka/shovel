@@ -1,3 +1,5 @@
+import 'package:shovel/src/interface/ground.dart';
+
 /// A tool for resolving dependencies registered in a [Ground] container.
 ///
 /// [Shovel] provides methods to retrieve instances of registered dependencies,

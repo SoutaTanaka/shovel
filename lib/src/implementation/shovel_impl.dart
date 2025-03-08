@@ -1,15 +1,15 @@
-import 'dart:collection';
+import 'package:shovel/shovel.dart';
 
-import '../../shovel.dart';
+import 'package:shovel/src/implementation/ground_impl.dart';
 
-import 'ground_impl.dart';
-
+/// A implementation of [Shovel] that resolves dependencies from a [Ground].
 class ShovelImpl implements Shovel {
+  /// Creates a new instance of [ShovelImpl].
+  ShovelImpl(this._graph, this._graphWithArg);
+
   final Map<Type, Dig> _graph;
   final Map<Type, DigWithArg> _graphWithArg;
   final Set<Type> _visited = {};
-
-  ShovelImpl(this._graph, this._graphWithArg);
 
   @override
   T dig<T>() {

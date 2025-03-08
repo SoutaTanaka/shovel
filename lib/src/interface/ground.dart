@@ -1,5 +1,5 @@
-import 'package:shovel/src/interface/shovel.dart';
 import 'package:shovel/src/implementation/ground_impl.dart';
+import 'package:shovel/src/interface/shovel.dart';
 
 /// A dependency injection container that manages object creation and dependencies.
 ///
@@ -28,7 +28,7 @@ abstract interface class Ground {
   ///   shovel.dig<UserService>(),
   /// ));
   /// ```
-  void bury<T>(T Function(Shovel shovel) callback);
+  void bury<T>(Dig<T> callback);
 
   /// Registers a dependency of type [T] that requires an argument of type [A].
   ///
