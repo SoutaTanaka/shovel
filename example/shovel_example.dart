@@ -7,7 +7,7 @@ void main() {
   final ground1 = Ground()..buryWithArg<A, String>((shovel, arg) => A(name: arg));
 
   final ground2 = Ground()
-    ..buryWithArg<B, A>((shovel, arg) => B(shovel.digWithArg<A, String>(arg)))
+    ..buryWithArg<B, String>((shovel, arg) => B(shovel.digWithArg<A, String>(arg)))
     ..bury<C>((shovel) => C(shovel.digWithArg<A, String>('CCC'), shovel.digWithArg<B, String>('CCCC')))
     ..reclaim(ground1);
 
